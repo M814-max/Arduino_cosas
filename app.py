@@ -11,7 +11,7 @@ def obtener_informacion_arduino(termino):
     soup = BeautifulSoup(page.content, 'html.parser')
     resultados = soup.find_all("a", string=lambda text: text and termino.lower() in text.lower())
     if resultados:
-        return "https://www.arduino.cc" + resultados[0].get('href')
+        return resultados[0].get('href').replace('..', 'https://www.arduino.cc')
     else:
         return "No se encontró información sobre el término."
 
